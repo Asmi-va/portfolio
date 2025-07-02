@@ -79,9 +79,7 @@ export default function PlaygroundPage() {
       });
       const data = await res.json();
       setSql(data.sql || data.error || "No SQL generated.");
-    } catch (err) {
-      setSql("Error generating SQL.");
-    }
+    } catch {}
     setLoading(false);
   }
 

@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Canvas } from '@react-three/fiber';
 import { Stars, Text } from '@react-three/drei';
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Link from "next/link";
 import { Typewriter } from 'react-simple-typewriter';
@@ -27,12 +27,6 @@ const skillIcons = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-];
-
-const achievementIcons = [
-  "https://cdn-icons-png.flaticon.com/512/190/190411.png",
-  "https://cdn-icons-png.flaticon.com/512/190/190411.png",
-  "https://cdn-icons-png.flaticon.com/512/190/190411.png",
 ];
 
 function AnimatedDivider() {
@@ -239,13 +233,12 @@ function SpaceyTimeline() {
   );
 }
 
-// Add a simple shooting star effect
 function ShootingStars() {
-  const [stars, setStars] = useState([
+  const stars = [
     { id: 1, left: '10%', delay: 0 },
     { id: 2, left: '70%', delay: 2 },
     { id: 3, left: '40%', delay: 4 },
-  ]);
+  ];
   return (
     <>
       {stars.map(star => (

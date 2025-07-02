@@ -21,7 +21,5 @@ export async function POST(req: NextRequest) {
     const data = await geminiRes.json();
     const sql = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'No SQL generated.';
     return NextResponse.json({ sql });
-  } catch (err) {
-    return NextResponse.json({ error: 'Failed to generate SQL.' }, { status: 500 });
-  }
+  } catch {}
 } 
