@@ -1,12 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Html, Stars, Text } from '@react-three/drei';
-import React, { useCallback, useRef, useState, useEffect } from 'react';
-import ThreeScene from "./ThreeScene";
+import { Canvas } from '@react-three/fiber';
+import { Stars, Text } from '@react-three/drei';
+import React, { useCallback, useState, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import Timeline3D from "./Timeline3D";
 import Link from "next/link";
 import { Typewriter } from 'react-simple-typewriter';
 
@@ -109,7 +106,7 @@ function RotatingName3D() {
 }
 
 function RotatingText() {
-  const meshRef = React.useRef<any>(null);
+  const meshRef = React.useRef<unknown>(null);
   const [flicker, setFlicker] = React.useState(false);
   React.useEffect(() => {
     const interval = setInterval(() => setFlicker(f => !f), 700);
@@ -269,21 +266,6 @@ export default function Home() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-
-  const [achEmblaRef, achEmblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
-  const [achSelectedIndex, setAchSelectedIndex] = useState(0);
-  useEffect(() => {
-    if (!achEmblaApi) return;
-    const onSelect = () => setAchSelectedIndex(achEmblaApi.selectedScrollSnap());
-    achEmblaApi.on('select', onSelect);
-    onSelect();
-    return () => {
-      if (achEmblaApi) achEmblaApi.off('select', onSelect);
-    };
-  }, [achEmblaApi]);
-
-  const scrollAchPrev = useCallback(() => achEmblaApi && achEmblaApi.scrollPrev(), [achEmblaApi]);
-  const scrollAchNext = useCallback(() => achEmblaApi && achEmblaApi.scrollNext(), [achEmblaApi]);
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center font-sans scroll-smooth">
