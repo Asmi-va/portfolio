@@ -68,16 +68,6 @@ const achievementBadges = [
   },
 ];
 
-function RotatingName3D() {
-  return (
-    <Canvas className="w-full h-40 sm:h-56" camera={{ position: [0, 0, 7], fov: 60 }}>
-      <ambientLight intensity={0.7} />
-      <Stars radius={100} depth={50} count={500} factor={4} saturation={0} fade speed={1} />
-      <RotatingText />
-    </Canvas>
-  );
-}
-
 function RotatingText() {
   const meshRef = React.useRef<unknown>(null);
   const [flicker, setFlicker] = React.useState(false);
@@ -205,33 +195,7 @@ function SpaceyTimeline() {
   );
 }
 
-function ShootingStars() {
-  const stars = [
-    { id: 1, left: '10%', delay: 0 },
-    { id: 2, left: '70%', delay: 2 },
-    { id: 3, left: '40%', delay: 4 },
-  ];
-  return (
-    <>
-      {stars.map(star => (
-        <motion.div
-          key={star.id}
-          className="absolute top-0 h-0.5 w-32 bg-gradient-to-r from-white/80 to-transparent rounded-full pointer-events-none"
-          style={{ left: star.left, zIndex: 1 }}
-          initial={{ y: 0, opacity: 0 }}
-          animate={{ y: [0, 600], opacity: [0, 1, 0] }}
-          transition={{ duration: 2.5, delay: star.delay, repeat: Infinity, repeatDelay: 3 }}
-        />
-      ))}
-    </>
-  );
-}
-
 export default function Home() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center font-sans scroll-smooth">
       {/* Sticky Navbar */}
@@ -296,8 +260,8 @@ export default function Home() {
       <section id="about" className="max-w-2xl w-full mb-12 px-4 bg-black">
         <motion.h2 className="text-xl font-semibold mb-2 text-blue-400" initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>About</motion.h2>
         <motion.p className="text-gray-200 text-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.2 }}>
-          I'm Asmi Vashista, a Computer Science undergrad specializing in Artificial Intelligence and Machine Learning. I enjoy building real-world projects — from real-time ML systems and API integrations to 3D visual experiences.<br /><br />
-          With internship experience in machine learning and data science, I've worked on predictive models, dashboards, and intelligent automation tools. I'm passionate about learning by doing and constantly exploring how AI can solve real problems.
+          I&apos;m Asmi Vashista, a Computer Science undergrad specializing in Artificial Intelligence and Machine Learning. I enjoy building real-world projects — from real-time ML systems and API integrations to 3D visual experiences.<br /><br />
+          With internship experience in machine learning and data science, I&apos;ve worked on predictive models, dashboards, and intelligent automation tools. I&apos;m passionate about learning by doing and constantly exploring how AI can solve real problems.
         </motion.p>
         <div className="flex gap-3 mt-4">
           {skillIcons.map((src, i) => (
