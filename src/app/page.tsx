@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Canvas } from '@react-three/fiber';
 import { Stars, Text } from '@react-three/drei';
 import React, { useCallback } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
 import Link from "next/link";
 import { Typewriter } from 'react-simple-typewriter';
 
