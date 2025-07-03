@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import { Text } from '@react-three/drei';
 import React from 'react';
 import Link from "next/link";
 import { Typewriter } from 'react-simple-typewriter';
