@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import React from 'react';
+import React, { useState } from 'react';
 import Link from "next/link";
 import { Typewriter } from 'react-simple-typewriter';
 
@@ -165,6 +165,41 @@ function SpaceyTimeline() {
 }
 
 export default function Home() {
+  // Contact form state and feedback
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setSuccess('');
+    setError('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setSuccess('Message sent successfully!');
+        setForm({ name: '', email: '', message: '' });
+      } else {
+        const data = await res.json();
+        setError(data.error || 'Failed to send message.');
+      }
+    } catch (err) {
+      setError('Failed to send message.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center font-sans scroll-smooth">
       {/* Sticky Navbar */}
@@ -285,12 +320,14 @@ export default function Home() {
           Feel free to reach out for collaborations, questions, or just to connect!
         </motion.p>
         <div className="flex flex-col gap-4">
-          <form className="flex flex-col gap-4">
-            <input type="text" placeholder="Name" className="bg-gray-900 border border-gray-700 rounded px-4 py-2 text-white focus:outline-none focus:border-blue-400" />
-            <input type="email" placeholder="Email" className="bg-gray-900 border border-gray-700 rounded px-4 py-2 text-white focus:outline-none focus:border-blue-400" />
-            <textarea placeholder="Message" rows={4} className="bg-gray-900 border border-gray-700 rounded px-4 py-2 text-white focus:outline-none focus:border-blue-400" />
-            <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition">Send</button>
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+            <input name="name" type="text" placeholder="Name" value={form.name} onChange={handleChange} className="bg-gray-900 border border-gray-700 rounded px-4 py-2 text-white focus:outline-none focus:border-blue-400" required />
+            <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} className="bg-gray-900 border border-gray-700 rounded px-4 py-2 text-white focus:outline-none focus:border-blue-400" required />
+            <textarea name="message" placeholder="Message" rows={4} value={form.message} onChange={handleChange} className="bg-gray-900 border border-gray-700 rounded px-4 py-2 text-white focus:outline-none focus:border-blue-400" required />
+            <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition" disabled={loading}>{loading ? 'Sending...' : 'Send'}</button>
           </form>
+          {success && <div className="text-green-400 font-semibold">{success}</div>}
+          {error && <div className="text-red-400 font-semibold">{error}</div>}
           {/* GitHub Contact Link */}
           <motion.a
             href="https://github.com/Asmi-va"
