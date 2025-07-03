@@ -1,8 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { Canvas } from '@react-three/fiber';
-import { Stars, Text } from '@react-three/drei';
-import React, { useCallback } from 'react';
+import { Text } from '@react-three/drei';
+import React from 'react';
 import Link from "next/link";
 import { Typewriter } from 'react-simple-typewriter';
 
@@ -66,34 +65,6 @@ const achievementBadges = [
     text: 'Winner – Smart India Hackathon 2024 (Internal round)',
   },
 ];
-
-function RotatingText() {
-  const meshRef = React.useRef<unknown>(null);
-  const [flicker, setFlicker] = React.useState(false);
-  React.useEffect(() => {
-    const interval = setInterval(() => setFlicker(f => !f), 700);
-    return () => clearInterval(interval);
-  }, []);
-  return (
-    <Text
-      ref={meshRef}
-      position={[0, 0, 0]}
-      fontSize={1.4}
-      color={flicker ? "#fff" : "#a5b4fc"}
-      anchorX="center"
-      anchorY="middle"
-      outlineColor={flicker ? "#f472b6" : "#6366f1"}
-      outlineWidth={flicker ? 0.09 : 0.06}
-      strokeColor="#fff"
-      strokeWidth={0.01}
-      fillOpacity={1}
-      letterSpacing={0.04}
-      fontWeight={"bold"}
-    >
-      ASMI VASHISTA
-    </Text>
-  );
-}
 
 const timelineData = [
   {
