@@ -29,45 +29,24 @@ const skillIcons = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
 ];
 
-function AnimatedDivider() {
-  return (
-    <svg viewBox="0 0 1440 100" className="w-full h-16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <motion.path
-        d="M0,50 C400,150 1040,-50 1440,50 L1440,100 L0,100 Z"
-        fill="#1e293b"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 1.5 }}
-      />
-    </svg>
-  );
-}
-
 const projects = [
   {
     title: "Women Safety Detection System",
     img: projectImages[0],
-    desc: "Real-time alerting via Twilio & Firebase, ML-based threat detection."
+    desc: "Real-time alerting via Twilio & Firebase, ML-based threat detection.",
+    link: "https://github.com/Asmi-va/women_safety_analysis"
   },
   {
     title: "End-to-End Text-to-SQL LLM App",
     img: projectImages[1],
-    desc: "Natural language to SQL interface using Google Gemini API, executes live queries."
-  },
-  {
-    title: "DDoS Detection System",
-    img: projectImages[2],
-    desc: "Real-time attack detection using Kafka, Grafana, and Scikit-learn."
-  },
-  {
-    title: "OCR-Based Document Insight Generator (Scan & Understand)",
-    img: projectImages[3],
-    desc: "Extracted and analyzed text from scanned docs using Tesseract OCR and exposed via FastAPI."
+    desc: "Natural language to SQL interface using Google Gemini API, executes live queries.",
+    link: "/playground"
   },
   {
     title: "Self-Driving Car Simulator",
     img: projectImages[4],
-    desc: "Lane detection with OpenCV, CNN steering model in PyGame."
+    desc: "Lane detection with OpenCV, CNN steering model in PyGame.",
+    link: "https://github.com/Asmi-va/Drive-AI-race-car-"
   },
 ];
 
@@ -167,26 +146,19 @@ const timelineData = [
         icon: '🛡️',
         title: 'Women Safety Detection System',
         desc: 'Real-time alerting via Twilio & Firebase, ML-based threat detection',
+        link: 'https://github.com/Asmi-va/women_safety_analysis'
       },
       {
         icon: '🔗',
         title: 'End-to-End Text-to-SQL LLM App',
         desc: 'Natural language to SQL interface using Google Gemini API, executes live queries',
-      },
-      {
-        icon: '🔒',
-        title: 'DDoS Detection System',
-        desc: 'Real-time attack detection using Kafka, Grafana, and Scikit-learn',
-      },
-      {
-        icon: '📄',
-        title: 'OCR-Based Document Insight Generator',
-        desc: 'Extracted and analyzed text from scanned docs using Tesseract OCR and exposed via FastAPI',
+        link: '/playground'
       },
       {
         icon: '🚗',
         title: 'Self-Driving Car Simulator',
         desc: 'Lane detection with OpenCV, CNN steering model in PyGame',
+        link: 'https://github.com/Asmi-va/Drive-AI-race-car-'
       },
     ],
   },
@@ -263,7 +235,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center font-sans scroll-smooth">
       {/* Sticky Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur border-b border-gray-800 flex justify-between items-center px-6 py-3">
+      <nav className="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur border-b border-gray-800 flex justify-between items-center px-6 py-3">
         <a href="#home" className="text-2xl font-bold tracking-tight">ASMI</a>
         <div className="flex gap-6">
           <a href="#about" className="hover:text-blue-400 transition">About</a>
@@ -282,126 +254,85 @@ export default function Home() {
         </div>
       </nav>
       {/* Hero Section */}
-      <section id="home" className="relative flex flex-col items-center justify-center min-h-[60vh] w-full pt-32 pb-12 overflow-hidden">
-        {/* Animated starfield background */}
-        <div className="absolute inset-0 -z-10">
-          <Canvas className="w-full h-full absolute inset-0">
-            <Stars radius={100} depth={50} count={800} factor={4} saturation={0} fade speed={1} />
-          </Canvas>
-          <ShootingStars />
-        </div>
-        {/* Glassmorphism Card */}
-        <motion.div
-          className="relative flex flex-col items-center justify-center px-8 py-8 rounded-3xl backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl max-w-lg mx-auto"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          {/* 3D Rotating Name */}
-          <div className="w-full flex justify-center items-center mb-2" style={{ height: '120px' }}>
-            <RotatingName3D />
-          </div>
-          {/* Animated Subtitle with Typewriter */}
-          <motion.p
-            className="text-lg text-blue-200 mb-4 font-mono tracking-widest drop-shadow-[0_0_8px_#6366f1] min-h-[32px]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            <Typewriter
-              words={["Aspiring Software Engineer", "AI/ML Enthusiast", "Backend & Data Wizard"]}
-              loop={0}
-              cursor
-              cursorStyle="_"
-              typeSpeed={60}
-              deleteSpeed={40}
-              delaySpeed={1200}
-            />
-          </motion.p>
-          {/* CTA Button */}
-          <motion.a
-            href="#about"
-            className="mt-2 px-7 py-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-pink-400/40 transition-all duration-300 border-2 border-white/20 backdrop-blur-md text-lg tracking-wide"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            View My Work
-          </motion.a>
-        </motion.div>
-        {/* Animated Down Arrow */}
-        <motion.div
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10"
-          initial={{ opacity: 0, y: 0 }}
-          animate={{ opacity: 1, y: [0, 16, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
-            <path d="M12 5v14m0 0l-7-7m7 7l7-7" stroke="#a5b4fc" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </motion.div>
-      </section>
-      <AnimatedDivider />
-      {/* About Section */}
-      <section id="about" className="max-w-2xl w-full mb-16 px-4">
-        <motion.h2 className="text-2xl font-semibold mb-2 text-blue-400" initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>About</motion.h2>
-        <motion.p className="text-gray-200" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.2 }}>
-          Aspiring Software Engineer eager to contribute to enterprise-level systems through strong skills in backend development, database management, and real-time monitoring. Proficient in Python and SQL with experience in debugging, building APIs, and enhancing software architecture.
-        </motion.p>
-        {/* Skills icons */}
-        <div className="flex gap-4 mt-6">
-          {skillIcons.map((src, i) => (
-            <motion.img key={i} src={src} alt="Skill" className="w-10 h-10" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }} />
-          ))}
-        </div>
-      </section>
-      <AnimatedDivider />
-      {/* Projects Section */}
-      <section id="projects" className="max-w-2xl w-full mb-16 px-4">
-        <motion.h2 className="text-2xl font-semibold mb-2 text-blue-400" initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>Projects</motion.h2>
-        <div className="relative">
-          {/* Left/Right Arrow Buttons */}
-          <button
-            onClick={scrollPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800 bg-opacity-70 hover:bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center shadow transition"
-            aria-label="Scroll left"
-            style={{ outline: 'none', border: 'none' }}
-          >
-            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg>
-          </button>
-          <button
-            onClick={scrollNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800 bg-opacity-70 hover:bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center shadow transition"
-            aria-label="Scroll right"
-            style={{ outline: 'none', border: 'none' }}
-          >
-            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
-          </button>
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-6 touch-pan-x" style={{ willChange: 'transform' }}>
-              {projects.map((project, i) => (
-                <a
-                  key={i}
-                  href="#" // Replace with project.link if available
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="min-w-[260px] max-w-xs flex-1 bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
-                  tabIndex={0}
-                >
-                  <motion.img src={project.img} alt={project.title} className="w-full h-32 object-cover" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }} />
-                  <div className="p-4">
-                    <p className="font-semibold text-blue-300 mb-1">{project.title}</p>
-                    <p className="text-gray-300 text-sm">{project.desc}</p>
-                  </div>
+      <section id="home" className="relative flex flex-col items-center justify-center min-h-[70vh] w-full pt-20 pb-10 bg-black">
+        <div className="max-w-5xl w-full bg-black rounded-3xl shadow-xl flex flex-col md:flex-row items-center justify-between px-4 py-8 mx-auto">
+          {/* Left: Text */}
+          <div className="flex-1 flex flex-col items-start justify-center gap-4">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+              Hi,<br />
+              I&apos;m <span className="text-blue-400">Asmi Vashista</span><br />
+              <span className="text-lg sm:text-xl font-bold text-gray-300">Software Engineer</span>
+            </h1>
+            <span className="text-base text-gray-400 font-mono min-h-[28px]">
+              <Typewriter
+                words={["AI/ML Enthusiast", "Backend & Data Wizard", "Building cool things with code!"]}
+                loop={0}
+                cursor
+                cursorStyle="_"
+                typeSpeed={60}
+                deleteSpeed={40}
+                delaySpeed={1200}
+              />
+            </span>
+            <a href="#contact" className="mt-2 px-5 py-2 bg-blue-600 text-white font-bold rounded-lg shadow hover:bg-blue-700 transition text-base">Contact</a>
+            {/* Social Icons */}
+            <div className="flex gap-4 mt-6">
+              {socialLinks.map(link => (
+                <a key={link.label} href={link.href} aria-label={link.label} className="hover:text-blue-400 transition text-xl text-white">
+                  <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d={link.icon} /></svg>
                 </a>
               ))}
             </div>
           </div>
+          {/* Right: Local coder image */}
+          <div className="flex-1 flex items-center justify-center mt-8 md:mt-0">
+            <div className="w-80 h-80 bg-black rounded-full flex items-center justify-center relative">
+              <img src="/coder image.png" alt="Coder Illustration" className="w-72 h-72 object-contain rounded-full" />
+            </div>
+          </div>
         </div>
       </section>
-      <AnimatedDivider />
+      {/* About Section */}
+      <section id="about" className="max-w-2xl w-full mb-12 px-4 bg-black">
+        <motion.h2 className="text-xl font-semibold mb-2 text-blue-400" initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>About</motion.h2>
+        <motion.p className="text-gray-200 text-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.2 }}>
+          I'm Asmi Vashista, a Computer Science undergrad specializing in Artificial Intelligence and Machine Learning. I enjoy building real-world projects — from real-time ML systems and API integrations to 3D visual experiences.<br /><br />
+          With internship experience in machine learning and data science, I've worked on predictive models, dashboards, and intelligent automation tools. I'm passionate about learning by doing and constantly exploring how AI can solve real problems.
+        </motion.p>
+        <div className="flex gap-3 mt-4">
+          {skillIcons.map((src, i) => (
+            <motion.img key={i} src={src} alt="Skill" className="w-8 h-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }} />
+          ))}
+        </div>
+      </section>
+      {/* Projects Section */}
+      <section id="projects" className="max-w-5xl w-full mb-12 px-4 bg-black">
+        <motion.h2 className="text-xl font-semibold mb-4 text-blue-400" initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>Projects</motion.h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {projects.map((project, i) => (
+            <a
+              key={i}
+              href={project.link || "#"}
+              target={project.link && project.link.startsWith('http') ? '_blank' : undefined}
+              rel={project.link && project.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="block bg-gray-900 rounded-xl shadow-md p-4 hover:shadow-lg transition border border-gray-800 hover:border-blue-400 text-white text-sm"
+              title={project.title}
+            >
+              <img src={project.img} alt={project.title} className="w-full h-28 object-cover rounded mb-2" />
+              <div className="font-bold text-base mb-1 text-blue-300">{project.title}</div>
+              <div className="text-gray-400 text-xs mb-2">{project.desc}</div>
+              {project.link && (
+                <div className="mt-1">
+                  <span className="text-blue-400 underline">Learn More</span>
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </section>
       {/* Achievements Section */}
-      <section id="achievements" className="max-w-2xl w-full mb-16 px-4 relative">
-        <motion.h2 className="text-2xl font-semibold mb-2 text-blue-400" initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>Achievements</motion.h2>
+      <section id="achievements" className="max-w-2xl w-full mb-16 px-4 bg-black">
+        <motion.h2 className="text-2xl font-semibold mb-6 text-blue-400" initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>Achievements</motion.h2>
         <div className="flex flex-wrap gap-8 justify-center items-center py-8">
           {achievementBadges.map((ach, i) => (
             <div key={i} className={`relative group w-32 h-32 flex flex-col items-center justify-center bg-gradient-to-br ${ach.color} rounded-full shadow-2xl animate-pulse hover:scale-110 transition-transform duration-300 cursor-pointer`}>
@@ -414,9 +345,8 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <AnimatedDivider />
       {/* Contact Section */}
-      <section id="contact" className="max-w-2xl w-full mb-16 px-4">
+      <section id="contact" className="max-w-2xl w-full mb-16 px-4 bg-black">
         <motion.h2 className="text-2xl font-semibold mb-2 text-blue-400" initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>Contact</motion.h2>
         <motion.p className="text-gray-200 mb-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.2 }}>
           Feel free to reach out for collaborations, questions, or just to connect!

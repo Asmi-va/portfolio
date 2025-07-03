@@ -1,6 +1,6 @@
 "use client";
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { ScrollControls, useScroll } from '@react-three/drei';
+import { ScrollControls, useScroll, Html } from '@react-three/drei';
 import React, { useRef, useState } from 'react';
 import * as THREE from 'three';
 
@@ -45,15 +45,15 @@ function Milestone({ position, color, icon, label, details, link, onHover, onCli
     <mesh ref={meshRef} position={position} onPointerOver={onHover} onPointerOut={onHover} onClick={onClick}>
       <sphereGeometry args={[0.7, 32, 32]} />
       <meshStandardMaterial color={color} emissive={isActive ? '#fff' : color} emissiveIntensity={isActive ? 0.7 : 0.2} />
-      <div style={{ pointerEvents: 'none', fontSize: 40 }}>{icon}</div>
+      <Html center distanceFactor={8} style={{ pointerEvents: 'none', fontSize: 40 }}>{icon}</Html>
       {isActive && (
-        <div style={{ background: 'rgba(30,41,59,0.98)', color: '#fff', padding: 16, borderRadius: 16, minWidth: 220, textAlign: 'center', fontSize: 18, boxShadow: '0 8px 32px #0008' }}>
+        <Html center position={[0, 1.5, 0]} distanceFactor={8} style={{ background: 'rgba(30,41,59,0.98)', color: '#fff', padding: 16, borderRadius: 16, minWidth: 220, textAlign: 'center', fontSize: 18, boxShadow: '0 8px 32px #0008' }}>
           <div className="font-bold mb-2 text-lg">{label}</div>
           <div style={{ whiteSpace: 'pre-line' }}>{details}</div>
           {link && (
             <a href={link} target="_blank" rel="noopener noreferrer" className="block mt-2 text-blue-400 underline hover:text-pink-400 transition">View More</a>
           )}
-        </div>
+        </Html>
       )}
     </mesh>
   );
