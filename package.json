@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/cannon": "^6.6.0",
     "@react-three/drei": "^10.4.2",
     "@react-three/fiber": "^9.1.4",
     "embla-carousel-react": "^8.6.0",

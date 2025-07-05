@@ -103,18 +103,18 @@ export default function PlaygroundPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-8">
-      <div className="w-full max-w-xl bg-gradient-to-br from-blue-900/80 via-black/90 to-pink-900/80 rounded-2xl shadow-2xl p-8 border border-blue-800/40 relative">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-8">
+      <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8 border border-gray-200 relative">
         {/* Tab Switcher */}
         <div className="flex justify-center mb-8 gap-4">
           <button
-            className={`px-6 py-2 rounded-t-lg font-bold text-lg transition border-b-4 ${tab === 'sql' ? 'bg-gradient-to-r from-blue-500 to-pink-500 text-white border-pink-400 shadow-lg' : 'bg-black/40 text-blue-200 border-transparent'}`}
+            className={`px-6 py-2 rounded-lg font-semibold transition ${tab === 'sql' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
             onClick={() => setTab('sql')}
           >
             Text-to-SQL
           </button>
           <button
-            className={`px-6 py-2 rounded-t-lg font-bold text-lg transition border-b-4 ${tab === 'math' ? 'bg-gradient-to-r from-pink-500 to-blue-500 text-white border-blue-400 shadow-lg' : 'bg-black/40 text-blue-200 border-transparent'}`}
+            className={`px-6 py-2 rounded-lg font-semibold transition ${tab === 'math' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
             onClick={() => setTab('math')}
           >
             Math Trivia
@@ -123,46 +123,46 @@ export default function PlaygroundPage() {
         {/* Text-to-SQL Tab */}
         {tab === 'sql' && (
           <>
-            <h1 className="text-3xl font-bold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-pink-400 to-yellow-300">Text-to-SQL Playground</h1>
-            <p className="text-center text-blue-200 mb-6">Type a question and generate a SQL query using Google Gemini!</p>
+            <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">Text-to-SQL Playground</h1>
+            <p className="text-center text-gray-600 mb-6">Type a question and generate a SQL query using Google Gemini!</p>
             <input
-              className="w-full bg-black/80 border border-blue-700 rounded px-4 py-3 text-white mb-4 focus:outline-none focus:border-pink-400 font-mono text-lg shadow-inner"
+              className="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-3 text-gray-800 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-lg"
               placeholder="e.g. Show all users named Asmi"
               value={input}
               onChange={e => setInput(e.target.value)}
             />
             <button
-              className="w-full py-3 rounded bg-gradient-to-r from-blue-500 to-pink-500 text-white font-bold text-lg shadow-lg hover:from-pink-500 hover:to-blue-500 transition mb-4"
+              className="w-full py-3 rounded-lg bg-blue-600 text-white font-semibold text-lg shadow-md hover:bg-blue-700 transition mb-4"
               onClick={handleGenerate}
               disabled={loading || !input.trim()}
             >
               {loading ? "Generating..." : "Generate SQL"}
             </button>
-            <div className="bg-black/90 border border-blue-800 rounded p-4 min-h-[80px] font-mono text-blue-200 text-lg shadow-inner transition-all duration-500 animate-fade-in-up">
+            <div className="bg-gray-50 border border-gray-300 rounded-lg p-4 min-h-[80px] font-mono text-gray-800 text-lg">
               {sql && <span>{sql}</span>}
-              {loading && <span className="animate-pulse text-pink-400">Thinking...</span>}
+              {loading && <span className="text-blue-600">Thinking...</span>}
             </div>
           </>
         )}
         {/* Math Trivia Tab */}
         {tab === 'math' && (
           <>
-            <h1 className="text-3xl font-bold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-blue-400 to-yellow-300">Math Trivia</h1>
-            <p className="text-center text-blue-200 mb-6">Test your math skills with cosmic MCQs!</p>
-            <div className="bg-black/80 border border-pink-700 rounded-2xl p-6 shadow-lg mb-4">
-              <div className="text-lg text-blue-100 mb-4 font-semibold flex items-center gap-2">
-                <span className="text-2xl">🪐</span> {mathQuestions[qIndex].question}
+            <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">Math Trivia</h1>
+            <p className="text-center text-gray-600 mb-6">Test your math skills with interactive MCQs!</p>
+            <div className="bg-gray-50 border border-gray-300 rounded-lg p-6 shadow-sm mb-4">
+              <div className="text-lg text-gray-800 mb-4 font-semibold flex items-center gap-2">
+                <span className="text-2xl">🧮</span> {mathQuestions[qIndex].question}
               </div>
               <div className="grid grid-cols-1 gap-3">
                 {mathQuestions[qIndex].options.map((opt, idx) => (
                   <button
                     key={idx}
-                    className={`w-full py-2 rounded-lg font-mono text-lg border-2 transition-all duration-200 shadow-md
+                    className={`w-full py-3 rounded-lg font-semibold text-lg border-2 transition-all duration-200
                       ${selected === idx
                         ? idx === mathQuestions[qIndex].answer
-                          ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white border-green-400 scale-105'
-                          : 'bg-gradient-to-r from-pink-500 to-yellow-500 text-white border-pink-400 scale-105'
-                        : 'bg-black/60 text-blue-200 border-blue-800 hover:bg-blue-900/40 hover:scale-105'}
+                          ? 'bg-green-500 text-white border-green-600'
+                          : 'bg-red-500 text-white border-red-600'
+                        : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100 hover:border-gray-400'}
                     `}
                     onClick={() => handleOption(idx)}
                     disabled={showResult}
@@ -172,24 +172,24 @@ export default function PlaygroundPage() {
                 ))}
               </div>
               {showResult && (
-                <div className="mt-4 text-center text-xl font-bold animate-fade-in-up">
+                <div className="mt-4 text-center text-xl font-bold">
                   {feedback}
                 </div>
               )}
               {showResult && (
                 <button
-                  className="mt-6 w-full py-2 rounded bg-gradient-to-r from-blue-500 to-pink-500 text-white font-bold text-lg shadow-lg hover:from-pink-500 hover:to-blue-500 transition"
+                  className="mt-6 w-full py-3 rounded-lg bg-blue-600 text-white font-semibold text-lg shadow-md hover:bg-blue-700 transition"
                   onClick={nextQuestion}
                 >
                   Next Question
                 </button>
               )}
             </div>
-            <div className="text-center text-blue-300 mt-4">Score: <span className="font-bold text-pink-400">{score}</span></div>
+            <div className="text-center text-gray-600 mt-4">Score: <span className="font-bold text-blue-600">{score}</span></div>
           </>
         )}
       </div>
-      <Link href="/" className="mt-8 text-blue-400 hover:text-pink-400 transition text-lg underline">← Back to Home</Link>
+      <Link href="/" className="mt-8 text-blue-600 hover:text-blue-800 transition text-lg underline">← Back to Home</Link>
     </div>
   );
 } 
