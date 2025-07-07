@@ -215,9 +215,6 @@ export default function Home() {
                 <path d="M24 16v8l6 3" stroke="#1e90ff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
-            <div className="text-blue-100 text-lg font-mono leading-relaxed">
-              Now, with internship experience in machine learning and data science, Asmi is looking for new challenges to work as a software engineer and AI/ML developer.
-            </div>
           </div>
         </div>
       </section>
@@ -255,14 +252,10 @@ export default function Home() {
               <div className="flex gap-8 min-w-[600px] sm:min-w-0">
                 {projects.map((project, i) => (
                   <div key={i} className="relative bg-white rounded-2xl shadow-lg p-4 flex flex-col items-start border border-gray-100 transition-transform hover:-translate-y-1 hover:shadow-2xl min-w-[320px] max-w-xs w-full">
-                    {/* Website of the Day Ribbon */}
-                    {i === 0 && (
-                      <div className="absolute left-0 top-4 -rotate-12 bg-yellow-300 text-yellow-900 font-bold text-xs px-3 py-1 rounded-r-lg shadow-lg z-10" style={{ fontFamily: 'monospace' }}>
-                        Website Of<br />The Day
-                      </div>
-                    )}
                     {/* Project Image */}
-                    <img src={project.img || '/coder image.png'} alt={project.title} className="w-full h-48 object-cover rounded-xl mb-4 border border-gray-100" />
+                    <a href={project.link} target={project.link && project.link.startsWith('http') ? '_blank' : undefined} rel={project.link && project.link.startsWith('http') ? 'noopener noreferrer' : undefined}>
+                      <img src={project.img || '/coder image.png'} alt={project.title} className="w-full h-48 object-cover rounded-xl mb-4 border border-gray-100 hover:opacity-80 transition" />
+                    </a>
                     {/* Project Title */}
                     <div className="text-2xl font-bold text-[#222] mb-2">{project.title}</div>
                     {/* Tech Stack Badges */}
