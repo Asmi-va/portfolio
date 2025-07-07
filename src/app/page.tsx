@@ -215,6 +215,9 @@ export default function Home() {
                 <path d="M24 16v8l6 3" stroke="#1e90ff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
+            <div className="text-blue-100 text-lg font-mono leading-relaxed">
+              {/* Intentionally left blank */}
+            </div>
           </div>
         </div>
       </section>
@@ -223,13 +226,27 @@ export default function Home() {
       <section id="work" className="py-20 px-4" style={{ background: '#f9f6f2' }}>
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="mb-12">
+          <motion.div
+            className="mb-12"
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
             <div className="flex items-center gap-3 mb-2">
               <span className="block w-8 h-1 rounded bg-orange-400" />
               <span className="text-lg font-semibold text-orange-500 tracking-wide">Portfolio</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-extrabold text-[#0a1930] mb-2 leading-tight">Some things<br />I&apos;ve worked on</h2>
-          </div>
+            <motion.h2
+              className="text-5xl md:text-6xl font-extrabold text-[#0a1930] mb-2 leading-tight"
+              initial={{ opacity: 0, y: -30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Some things<br />I&apos;ve worked on
+            </motion.h2>
+          </motion.div>
           {/* Projects Grid with Scroll Buttons */}
           <div className="relative">
             <button
@@ -251,7 +268,14 @@ export default function Home() {
             <div ref={projectsScrollRef} className="overflow-x-auto pb-2">
               <div className="flex gap-8 min-w-[600px] sm:min-w-0">
                 {projects.map((project, i) => (
-                  <div key={i} className="relative bg-white rounded-2xl shadow-lg p-4 flex flex-col items-start border border-gray-100 transition-transform hover:-translate-y-1 hover:shadow-2xl min-w-[320px] max-w-xs w-full">
+                  <motion.div
+                    key={i}
+                    className="relative bg-white rounded-2xl shadow-lg p-4 flex flex-col items-start border border-gray-100 transition-transform hover:-translate-y-1 hover:shadow-2xl min-w-[320px] max-w-xs w-full"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                  >
                     {/* Project Image */}
                     <a href={project.link} target={project.link && project.link.startsWith('http') ? '_blank' : undefined} rel={project.link && project.link.startsWith('http') ? 'noopener noreferrer' : undefined}>
                       <img src={project.img || '/coder image.png'} alt={project.title} className="w-full h-48 object-cover rounded-xl mb-4 border border-gray-100 hover:opacity-80 transition" />
@@ -289,7 +313,7 @@ export default function Home() {
                         Learn More →
                       </a>
                     )}
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
