@@ -216,7 +216,7 @@ export default function Home() {
               </svg>
             </div>
             <div className="text-blue-100 text-lg font-mono leading-relaxed">
-              At the age of 15, Asmi first came in touch with programming and app development. During her Computer Science studies specializing in AI & ML, programming has always been a passion. Now, with internship experience in machine learning and data science, Asmi is looking for new challenges to work as a software engineer and AI/ML developer.
+              Now, with internship experience in machine learning and data science, Asmi is looking for new challenges to work as a software engineer and AI/ML developer.
             </div>
           </div>
         </div>
