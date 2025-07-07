@@ -340,7 +340,7 @@ export default function Home() {
               <span className="block w-8 h-1 rounded bg-orange-400" />
               <span className="text-lg font-semibold text-orange-500 tracking-wide">Portfolio</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-extrabold text-[#0a1930] mb-2 leading-tight">Some things<br />I've worked on</h2>
+            <h2 className="text-5xl md:text-6xl font-extrabold text-[#0a1930] mb-2 leading-tight">Some things<br />I&apos;ve worked on</h2>
           </div>
           {/* Projects Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
