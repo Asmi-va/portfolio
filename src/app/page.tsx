@@ -177,7 +177,14 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4 flex justify-center bg-gradient-to-br from-[#0a1930] via-[#102347] to-[#1a3a6b]">
+      <motion.section
+        id="about"
+        className="py-20 px-4 flex justify-center bg-gradient-to-br from-[#0a1930] via-[#102347] to-[#1a3a6b]"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.1 }}
+        viewport={{ once: true }}
+      >
         <div className="w-full max-w-3xl rounded-2xl p-8 shadow-2xl border-2 border-blue-500/60" style={{ boxShadow: '0 0 32px #1e90ff44' }}>
           {/* Profile Info */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
@@ -225,10 +232,18 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Projects Section */}
-      <section id="work" className="py-20 px-4" style={{ background: '#f9f6f2' }}>
+      <motion.section
+        id="work"
+        className="py-20 px-4"
+        style={{ background: '#f9f6f2' }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <motion.div
@@ -275,15 +290,16 @@ export default function Home() {
                 {projects.map((project, i) => (
                   <motion.div
                     key={i}
-                    className="relative bg-white rounded-2xl shadow-lg p-4 flex flex-col items-start border border-gray-100 transition-transform hover:-translate-y-1 hover:shadow-2xl min-w-[320px] max-w-xs w-full"
+                    className="relative bg-white rounded-2xl shadow-lg p-4 flex flex-col items-start border border-gray-100 min-w-[320px] max-w-xs w-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:ring-2 hover:ring-blue-400/40"
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
                     viewport={{ once: true }}
+                    whileHover={{ scale: 1.07, boxShadow: "0 8px 32px #60a5fa55" }}
                   >
                     {/* Project Image */}
                     <a href={project.link} target={project.link && project.link.startsWith('http') ? '_blank' : undefined} rel={project.link && project.link.startsWith('http') ? 'noopener noreferrer' : undefined}>
-                      <img src={project.img || '/coder image.png'} alt={project.title} className="w-full h-48 object-cover rounded-xl mb-4 border border-gray-100 hover:opacity-80 transition" />
+                      <img src={project.img || '/coder image.png'} alt={project.title} className="w-full h-48 object-cover rounded-xl mb-4 border border-gray-100 transition-all duration-300 hover:brightness-110 hover:scale-105" />
                     </a>
                     {/* Project Title */}
                     <div className="text-2xl font-bold text-[#222] mb-2">{project.title}</div>
@@ -308,26 +324,31 @@ export default function Home() {
                     {/* Project Description */}
                     <div className="text-gray-500 text-base mb-4 flex-1">{project.desc}</div>
                     {/* Learn More Link */}
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        target={project.link.startsWith('http') ? '_blank' : undefined}
-                        rel={project.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="mt-auto inline-block text-orange-500 font-bold hover:underline text-sm"
-                      >
-                        Learn More →
-                      </a>
-                    )}
+                    <a
+                      href={project.link}
+                      target={project.link.startsWith('http') ? '_blank' : undefined}
+                      rel={project.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="mt-auto inline-block text-orange-500 font-bold hover:underline text-sm transition-transform duration-200 hover:scale-110"
+                    >
+                      Learn More →
+                    </a>
                   </motion.div>
                 ))}
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Achievements */}
-      <section id="work" className="py-20 px-8">
+      <motion.section
+        id="work"
+        className="py-20 px-8"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.2 }}
+        viewport={{ once: true }}
+      >
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -353,10 +374,18 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4" style={{ background: '#f9f6f2' }}>
+      <motion.section
+        id="contact"
+        className="py-20 px-4"
+        style={{ background: '#f9f6f2' }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.3 }}
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-stretch gap-12">
           {/* Left: Form and Info */}
           <div className="flex-1 flex flex-col justify-center">
@@ -432,7 +461,7 @@ export default function Home() {
             <img src="/7450220-removebg-preview.png" alt="Contact Illustration" className="w-[520px] md:w-[640px] h-auto object-contain drop-shadow-xl self-start mt-0 md:mt-4 lg:mt-8" style={{ maxHeight: 640 }} />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
       <footer className="py-8 px-8 border-t border-gray-200">
@@ -440,6 +469,21 @@ export default function Home() {
           <p>&copy; {new Date().getFullYear()} Asmi Vashista</p>
         </div>
       </footer>
+
+      {/* Resume Button Animation */}
+      <motion.a
+        href="/api/resume"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block px-8 py-4 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition text-lg mt-4"
+        whileHover={{ scale: 1.08, boxShadow: "0 8px 32px #60a5fa55" }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true }}
+      >
+        Resume
+      </motion.a>
     </div>
   );
 }
