@@ -160,6 +160,14 @@ export default function Home() {
               />
             </span>
             <p className="text-2xl text-gray-500 mb-8">I love creating beautiful user experiences.</p>
+            <a
+              href="/api/resume"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-4 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition text-lg"
+            >
+              Resume
+            </a>
           </div>
           {/* Right: Illustration */}
           <div className="flex-1 flex items-center justify-center w-full md:w-auto">
