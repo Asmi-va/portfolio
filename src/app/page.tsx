@@ -290,7 +290,7 @@ export default function Home() {
                 {projects.map((project, i) => (
                   <motion.div
                     key={i}
-                    className="relative rounded-2xl shadow-lg p-4 flex flex-col items-start min-w-[320px] max-w-xs w-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:ring-2 hover:ring-blue-400/40 bg-white/30 dark:bg-[#1a263a]/60 backdrop-blur-md border border-white/30 dark:border-[#22304a]/40"
+                    className="relative rounded-2xl shadow-lg p-4 flex flex-col items-start min-w-[320px] max-w-xs w-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:ring-2 hover:ring-blue-400/40 bg-white/30 dark:bg-[#1a263a]/60 backdrop-blur-md border border-white/30 dark:border-[#22304a]/40 text-white"
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
@@ -302,7 +302,7 @@ export default function Home() {
                       <img src={project.img || '/coder image.png'} alt={project.title} className="w-full h-48 object-cover rounded-xl mb-4 border border-gray-100 transition-all duration-300 hover:brightness-110 hover:scale-105" />
                     </a>
                     {/* Project Title */}
-                    <div className="text-2xl font-bold text-[#222] mb-2">{project.title}</div>
+                    <div className="text-2xl font-bold text-white mb-2">{project.title}</div>
                     {/* Tech Stack Badges */}
                     <div className="flex flex-wrap gap-2 mb-2">
                       {project.stack?.map((tech: string, idx: number) => (
@@ -322,7 +322,7 @@ export default function Home() {
                       ))}
                     </div>
                     {/* Project Description */}
-                    <div className="text-gray-500 text-base mb-4 flex-1">{project.desc}</div>
+                    <div className="text-white/80 text-base mb-4 flex-1">{project.desc}</div>
                     {/* Learn More Link */}
                     <a
                       href={project.link}
