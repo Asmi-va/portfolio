@@ -22,5 +22,9 @@ export async function GET() {
       title: 'Self-Driving Car Simulator',
       details: 'Lane detection with OpenCV, CNN steering model in PyGame',
     },
+    {
+      title: 'BRSR/GRI Analyzer – End-to-End Validation',
+      details: 'Automated validation and analysis of BRSR/GRI sustainability reports. End-to-end data extraction, compliance checks, and insights dashboard.',
+    },
   ]);
 } 
