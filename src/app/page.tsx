@@ -290,7 +290,7 @@ export default function Home() {
                 {projects.map((project, i) => (
                   <motion.div
                     key={i}
-                    className="relative bg-white rounded-2xl shadow-lg p-4 flex flex-col items-start border border-gray-100 min-w-[320px] max-w-xs w-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:ring-2 hover:ring-blue-400/40"
+                    className="relative rounded-2xl shadow-lg p-4 flex flex-col items-start min-w-[320px] max-w-xs w-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:ring-2 hover:ring-blue-400/40 bg-white/30 dark:bg-[#1a263a]/60 backdrop-blur-md border border-white/30 dark:border-[#22304a]/40"
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: i * 0.1 }}
@@ -394,7 +394,7 @@ export default function Home() {
               <span className="text-lg font-semibold text-orange-500 tracking-wide">Say hello <span role='img' aria-label='wave'>👋</span></span>
             </div>
             <h2 className="text-5xl md:text-6xl font-extrabold text-[#0a1930] mb-8 leading-tight">Contact me</h2>
-            <form onSubmit={handleSubmit} className="bg-[#f5f5f5] rounded-2xl shadow-lg p-8 flex flex-col gap-6 mb-6 border border-gray-100">
+            <form onSubmit={handleSubmit} className="rounded-2xl shadow-lg p-8 flex flex-col gap-6 mb-6 border border-white/30 dark:border-[#22304a]/40 bg-white/30 dark:bg-[#1a263a]/60 backdrop-blur-md">
               <label className="text-gray-400 font-semibold text-lg" htmlFor="name">Name :</label>
               <input
                 id="name"
