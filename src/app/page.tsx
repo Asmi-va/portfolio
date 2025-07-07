@@ -10,22 +10,6 @@ const socialLinks = [
   { href: "mailto:vashistaasmi@gmail.com", label: "Email", icon: "M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" },
 ];
 
-const projectImages = [
-  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80",
-];
-
-const skillIcons = [
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-];
-
 const projects = [
   {
     title: "Women Safety Detection System",
@@ -126,47 +110,6 @@ const timelineData = [
     ],
   },
 ];
-
-function SpaceyTimeline() {
-  return (
-    <section id="timeline" className="w-full max-w-2xl mx-auto py-20 px-4">
-      <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-pink-400 to-yellow-300">Experience Timeline</h2>
-      <div className="relative border-l-4 border-blue-900/60 ml-6">
-        {timelineData.map((item, i) => (
-          <div key={i} className="mb-16 flex items-center group">
-            {/* Animated planet/star */}
-            <div className={`absolute -left-8 w-12 h-12 rounded-full bg-gradient-to-br ${item.color} shadow-2xl flex items-center justify-center text-3xl animate-pulse group-hover:scale-110 transition-transform duration-300`}>
-              <span className="drop-shadow-[0_0_8px_#fff]">{item.icon}</span>
-            </div>
-            {/* Animated line */}
-            {i < timelineData.length - 1 && (
-              <div className="absolute left-[-2px] top-12 w-1 h-16 bg-gradient-to-b from-blue-900/60 to-transparent animate-gradient-x" />
-            )}
-            <div className="ml-12 bg-black/80 rounded-xl shadow-lg p-6 border border-blue-900/40 w-full animate-fade-in-up">
-              <div className="text-xl font-bold text-blue-200 mb-1">{item.title}</div>
-              {item.subtitle && <div className="text-md text-blue-400 mb-1">{item.subtitle}</div>}
-              {item.date && <div className="text-sm text-gray-400 mb-2">{item.date}</div>}
-              {/* If this is the Projects group, show all projects */}
-              {item.projects && (
-                <ul className="mt-2 space-y-2">
-                  {item.projects.map((proj, j) => (
-                    <li key={j} className="flex items-start gap-2">
-                      <span className="text-2xl">{proj.icon}</span>
-                      <div>
-                        <div className="font-semibold text-blue-300">{proj.title}</div>
-                        <div className="text-gray-400 text-sm">{proj.desc}</div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function SkillBar({ label, value }: { label: string; value: number }) {
   return (
