@@ -163,6 +163,23 @@ export default function Home() {
             <a href="#contact" className="inline-block px-8 py-4 bg-orange-400 text-white font-bold rounded-full shadow hover:bg-orange-500 transition text-lg">
               Get in touch
             </a>
+            <div className="flex gap-4 mt-4">
+              <a
+                href="/api/resume"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-blue-600 text-white font-bold rounded-full shadow hover:bg-blue-700 transition text-lg"
+              >
+                View Resume
+              </a>
+              <a
+                href="/api/resume"
+                download
+                className="px-8 py-4 bg-green-600 text-white font-bold rounded-full shadow hover:bg-green-700 transition text-lg"
+              >
+                Download Resume
+              </a>
+            </div>
           </div>
           {/* Right: Illustration */}
           <div className="flex-1 flex items-center justify-center w-full md:w-auto">
