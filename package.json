@@ -18,7 +18,7 @@
     "nodemailer": "^7.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-force-graph": "^1.47.7",
+    "react-force-graph": "^1.29.3",
     "react-force-graph-2d": "^1.27.1",
     "react-simple-typewriter": "^5.0.1",
     "three": "^0.178.0"
@@ -27,6 +27,7 @@
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
