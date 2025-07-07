@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from "next/link";
 import { Typewriter } from 'react-simple-typewriter';
 
@@ -36,7 +36,7 @@ const projects = [
     title: "BRSR/GRI Analyzer – End-to-End Validation",
     img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
     desc: "Automated validation and analysis of BRSR/GRI sustainability reports. End-to-end data extraction, compliance checks, and insights dashboard.",
-    link: "https://github.com/Asmi-va/brsr-gri-analyzer",
+    link: "https://github.com/Asmi-va/BRSR-GRI-Analyzer-End-to-End-Validation",
     stack: ["Python", "FastAPI", "React", "Pandas"]
   },
 ];
@@ -69,6 +69,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
+  const projectsScrollRef = useRef<HTMLDivElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -96,6 +97,17 @@ export default function Home() {
       setError('Failed to send message.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const scrollProjects = (direction: 'left' | 'right') => {
+    const container = projectsScrollRef.current;
+    if (container) {
+      const scrollAmount = 340; // width of one card + gap
+      container.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
     }
   };
 
@@ -221,53 +233,73 @@ export default function Home() {
             </div>
             <h2 className="text-5xl md:text-6xl font-extrabold text-[#0a1930] mb-2 leading-tight">Some things<br />I&apos;ve worked on</h2>
           </div>
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {projects.map((project, i) => (
-              <div key={i} className="relative bg-white rounded-2xl shadow-lg p-4 flex flex-col items-start border border-gray-100 transition-transform hover:-translate-y-1 hover:shadow-2xl">
-                {/* Website of the Day Ribbon */}
-                {i === 0 && (
-                  <div className="absolute left-0 top-4 -rotate-12 bg-yellow-300 text-yellow-900 font-bold text-xs px-3 py-1 rounded-r-lg shadow-lg z-10" style={{ fontFamily: 'monospace' }}>
-                    Website Of<br />The Day
+          {/* Projects Grid with Scroll Buttons */}
+          <div className="relative">
+            <button
+              onClick={() => scrollProjects('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-gray-300 rounded-full shadow p-2 hover:bg-orange-100 transition disabled:opacity-40"
+              style={{ display: 'block' }}
+              aria-label="Scroll left"
+            >
+              &#8592;
+            </button>
+            <button
+              onClick={() => scrollProjects('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-gray-300 rounded-full shadow p-2 hover:bg-orange-100 transition disabled:opacity-40"
+              style={{ display: 'block' }}
+              aria-label="Scroll right"
+            >
+              &#8594;
+            </button>
+            <div ref={projectsScrollRef} className="overflow-x-auto pb-2">
+              <div className="flex gap-8 min-w-[600px] sm:min-w-0">
+                {projects.map((project, i) => (
+                  <div key={i} className="relative bg-white rounded-2xl shadow-lg p-4 flex flex-col items-start border border-gray-100 transition-transform hover:-translate-y-1 hover:shadow-2xl min-w-[320px] max-w-xs w-full">
+                    {/* Website of the Day Ribbon */}
+                    {i === 0 && (
+                      <div className="absolute left-0 top-4 -rotate-12 bg-yellow-300 text-yellow-900 font-bold text-xs px-3 py-1 rounded-r-lg shadow-lg z-10" style={{ fontFamily: 'monospace' }}>
+                        Website Of<br />The Day
+                      </div>
+                    )}
+                    {/* Project Image */}
+                    <img src={project.img || '/coder image.png'} alt={project.title} className="w-full h-48 object-cover rounded-xl mb-4 border border-gray-100" />
+                    {/* Project Title */}
+                    <div className="text-2xl font-bold text-[#222] mb-2">{project.title}</div>
+                    {/* Tech Stack Badges */}
+                    <div className="flex flex-wrap gap-2 mb-2">
+                      {project.stack?.map((tech: string, idx: number) => (
+                        <span key={idx} className={
+                          tech === 'Python' ? 'bg-blue-100 text-blue-700' :
+                          tech === 'C++' ? 'bg-purple-100 text-purple-700' :
+                          tech === 'Django' ? 'bg-green-100 text-green-700' :
+                          tech === 'TensorFlow' ? 'bg-yellow-100 text-yellow-700' :
+                          tech === 'MySQL' ? 'bg-pink-100 text-pink-700' :
+                          tech === 'React' ? 'bg-cyan-100 text-cyan-700' :
+                          tech === 'Next.js' ? 'bg-gray-200 text-gray-700' :
+                          tech === 'JavaScript' ? 'bg-yellow-200 text-yellow-800' :
+                          tech === 'HTML' ? 'bg-orange-100 text-orange-700' :
+                          tech === 'CSS' ? 'bg-blue-50 text-blue-600' :
+                          'bg-gray-100 text-gray-700'
+                        + ' px-3 py-1 rounded-full text-xs font-semibold'}>{tech}</span>
+                      ))}
+                    </div>
+                    {/* Project Description */}
+                    <div className="text-gray-500 text-base mb-4 flex-1">{project.desc}</div>
+                    {/* Learn More Link */}
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target={project.link.startsWith('http') ? '_blank' : undefined}
+                        rel={project.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        className="mt-auto inline-block text-orange-500 font-bold hover:underline text-sm"
+                      >
+                        Learn More →
+                      </a>
+                    )}
                   </div>
-                )}
-                {/* Project Image */}
-                <img src={project.img || '/coder image.png'} alt={project.title} className="w-full h-48 object-cover rounded-xl mb-4 border border-gray-100" />
-                {/* Project Title */}
-                <div className="text-2xl font-bold text-[#222] mb-2">{project.title}</div>
-                {/* Tech Stack Badges */}
-                <div className="flex flex-wrap gap-2 mb-2">
-                  {project.stack?.map((tech: string, idx: number) => (
-                    <span key={idx} className={
-                      tech === 'Python' ? 'bg-blue-100 text-blue-700' :
-                      tech === 'C++' ? 'bg-purple-100 text-purple-700' :
-                      tech === 'Django' ? 'bg-green-100 text-green-700' :
-                      tech === 'TensorFlow' ? 'bg-yellow-100 text-yellow-700' :
-                      tech === 'MySQL' ? 'bg-pink-100 text-pink-700' :
-                      tech === 'React' ? 'bg-cyan-100 text-cyan-700' :
-                      tech === 'Next.js' ? 'bg-gray-200 text-gray-700' :
-                      tech === 'JavaScript' ? 'bg-yellow-200 text-yellow-800' :
-                      tech === 'HTML' ? 'bg-orange-100 text-orange-700' :
-                      tech === 'CSS' ? 'bg-blue-50 text-blue-600' :
-                      'bg-gray-100 text-gray-700'
-                    + ' px-3 py-1 rounded-full text-xs font-semibold'}>{tech}</span>
-                  ))}
-                </div>
-                {/* Project Description */}
-                <div className="text-gray-500 text-base mb-4 flex-1">{project.desc}</div>
-                {/* Learn More Link */}
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target={project.link.startsWith('http') ? '_blank' : undefined}
-                    rel={project.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="mt-auto inline-block text-orange-500 font-bold hover:underline text-sm"
-                  >
-                    Learn More →
-                  </a>
-                )}
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
